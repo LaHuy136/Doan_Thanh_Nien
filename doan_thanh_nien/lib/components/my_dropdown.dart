@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../themes/colors.dart';
+
 class MyDropdown extends StatelessWidget {
   final String text;
   final IconData icon;
@@ -20,13 +22,13 @@ class MyDropdown extends StatelessWidget {
       child: ListTile(
         leading: Icon(
           icon,
-          color: const Color.fromARGB(255, 40, 117, 187),
+          color: AppColor.drawerTileColor,
           size: 25,
         ),
         title: Text(
           text,
-          style: const TextStyle(
-            color: Color.fromARGB(255, 40, 117, 187),
+          style: TextStyle(
+            color: AppColor.drawerTileColor,
           ),
         ),
         onTap: () {
@@ -119,7 +121,7 @@ class MyDropdown extends StatelessWidget {
                 ),
               ),
             ],
-            color: Color.fromARGB(255, 21, 61, 133),
+            color: AppColor.popupColor,
             popUpAnimationStyle: AnimationStyle(
               curve: Curves.ease,
               duration: Durations.extralong1,

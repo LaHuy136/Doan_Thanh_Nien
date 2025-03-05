@@ -9,6 +9,7 @@ import '../bloc/event/drawer_event.dart';
 import '../bloc/state/drawer_state.dart';
 import '../pages/home_page.dart';
 import '../pages/profile_page.dart';
+import '../themes/colors.dart';
 import 'my_dropdown.dart';
 
 @override
@@ -24,7 +25,7 @@ class MyDrawer extends StatelessWidget {
     return BlocProvider(
       create: (context) => DrawerBloc()..add(LoadUserDataEvent()),
       child: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.bgColor,
         child: BlocBuilder<DrawerBloc, DrawerState>(
           builder: (context, state) {
             return Column(
@@ -66,9 +67,9 @@ class MyDrawer extends StatelessWidget {
                   ),
                 ),
 
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(25.0),
-                  child: Divider(color: Color.fromARGB(255, 239, 239, 239)),
+                  child: Divider(color: AppColor.dividerColor),
                 ),
 
                 // home

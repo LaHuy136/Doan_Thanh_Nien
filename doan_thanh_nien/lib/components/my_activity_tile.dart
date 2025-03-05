@@ -1,6 +1,8 @@
 import 'package:doan_thanh_nien/models/volunteer_activities.dart';
 import 'package:flutter/material.dart';
 
+import '../themes/colors.dart';
+
 class MyActivityTile extends StatelessWidget {
   final volunteerActivities activity;
   final VoidCallback onTap;
@@ -27,8 +29,8 @@ class MyActivityTile extends StatelessWidget {
             // title
             Text(
               activity.title,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 46, 46, 93),
+              style: TextStyle(
+                color: AppColor.headingColor,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins-Medium',
@@ -40,17 +42,17 @@ class MyActivityTile extends StatelessWidget {
             // date
             Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.date_range_outlined,
-                  color: Color.fromARGB(255, 0, 80, 157),
+                  color: AppColor.textColor,
                 ),
                 const SizedBox(width: 4),
                 Text(
                   activity.day,
-                  style: const TextStyle(
+                  style: TextStyle(
                     letterSpacing: 0.4,
                     fontSize: 14,
-                    color: Color.fromARGB(255, 0, 80, 157),
+                    color: AppColor.textColor,
                     fontFamily: 'Roboto-Regular',
                   ),
                 ),
@@ -61,15 +63,15 @@ class MyActivityTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(
+                Icon(
                   Icons.location_on_outlined,
-                  color: Color.fromARGB(255, 0, 80, 157),
+                  color: AppColor.textColor,
                 ),
                 Text(
                   activity.location,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: Color.fromARGB(255, 0, 80, 157),
+                    color: AppColor.textColor,
                     fontFamily: 'Roboto-Regular',
                   ),
                 ),
@@ -80,7 +82,7 @@ class MyActivityTile extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),
-                      color: const Color.fromARGB(255, 0, 80, 157),
+                      color: AppColor.textColor,
                     ),
                     child: IconButton(
                       onPressed: onTap,

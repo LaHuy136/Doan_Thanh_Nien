@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/colors.dart';
+
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   final IconData icon;
   final Function()? onPressed;
@@ -19,7 +21,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
       iconTheme: const IconThemeData(
         color: Colors.white,
       ),
-      backgroundColor: const Color.fromARGB(255, 21, 61, 133),
+      backgroundColor: AppColor.appBarColor,
       title: Padding(
         padding: const EdgeInsets.only(left: 15.0 ,bottom: 10.0),
         child: Image.asset(

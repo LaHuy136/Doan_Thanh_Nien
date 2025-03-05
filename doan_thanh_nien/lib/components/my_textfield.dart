@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:doan_thanh_nien/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class MyTextfield extends StatelessWidget {
@@ -25,22 +26,22 @@ class MyTextfield extends StatelessWidget {
         obscureText: obsecureText,
         decoration: InputDecoration(
           filled: true,
-          fillColor: Color.fromARGB(255, 245, 245, 250),
+          fillColor: AppColor.textFieldColor,
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Color.fromARGB(255, 245, 245, 250),
+                color: AppColor.textFieldColor,
               ),
               borderRadius: BorderRadius.circular(8.0)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Color.fromARGB(255, 250, 250, 255),
+                color: AppColor.bordertfColor
               ),
               borderRadius: BorderRadius.circular(8.0)),
           hintText: hintText,
           hintStyle: TextStyle(
             fontFamily: 'Poppins-Medium',
             fontSize: 16,
-            color: Color.fromARGB(184, 156, 168, 211),
+            color: AppColor.textForHintextColor,
             letterSpacing: 0.7,
           ),
           contentPadding:

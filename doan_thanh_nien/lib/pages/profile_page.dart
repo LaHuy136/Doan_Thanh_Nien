@@ -9,6 +9,7 @@ import '../components/my_avatar.dart';
 import '../components/my_button.dart';
 import '../components/my_drawer.dart';
 import '../components/my_heading.dart';
+import '../themes/colors.dart';
 import 'update_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -117,10 +118,10 @@ class ProfilePage extends StatelessWidget {
         Text(
           textAlign: TextAlign.left,
           text,
-          style: const TextStyle(
-            color: Color.fromARGB(255, 46, 46, 93),
+          style: TextStyle(
+            color: AppColor.textColor,
             fontFamily: 'Poppins-Regular',
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
             fontSize: 16,
           ),
         ),
@@ -136,8 +137,8 @@ class ProfilePage extends StatelessWidget {
         Text(
           textAlign: TextAlign.left,
           text,
-          style: const TextStyle(
-            color: Color.fromARGB(255, 46, 46, 93),
+          style: TextStyle(
+            color: AppColor.textColor,
             fontFamily: 'Poppins-Medium',
             fontSize: 16,
           ),

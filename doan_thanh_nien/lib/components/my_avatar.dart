@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../themes/colors.dart';
+
 class MyAvatar extends StatefulWidget {
   const MyAvatar({super.key});
 
@@ -17,7 +19,8 @@ class _MyAvatarState extends State<MyAvatar> {
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
@@ -41,14 +44,18 @@ class _MyAvatarState extends State<MyAvatar> {
             onPressed: _pickImage,
             icon: Container(
               width: 120,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.photo_camera_outlined),
-                  SizedBox(width: 4),
-                  Text('Tải ảnh lên', style: TextStyle(
-                    color: Color.fromARGB(255, 46, 46, 93),
-                  ),),
+                  const Icon(Icons.photo_camera_outlined),
+                  const SizedBox(width: 4),
+                  Text(
+                    'Tải ảnh lên',
+                    style: TextStyle(
+                      color: AppColor.textColor,
+                      fontSize: 18,
+                    ),
+                  ),
                 ],
               ),
             ),

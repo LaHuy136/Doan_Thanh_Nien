@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/colors.dart';
+
 class MyDrawerTile extends StatelessWidget {
   final Function()? onTap;
   final Function(String)? onSelect;
@@ -20,13 +22,13 @@ class MyDrawerTile extends StatelessWidget {
       child: ListTile(
         title: Text(
           text,
-          style: const TextStyle(
-            color: Color.fromARGB(255, 40, 117, 187),
+          style: TextStyle(
+            color: AppColor.drawerTileColor,
           ),
         ),
         leading: Icon(
           icon,
-          color: const Color.fromARGB(255, 40, 117, 187),
+          color: AppColor.drawerTileColor,
           size: 25,
         ),
         onTap: onTap,

@@ -10,219 +10,8 @@ import '../bloc/activity_bloc.dart';
 import '../bloc/event/activity_event.dart';
 import '../bloc/state/activity_state.dart';
 import '../components/my_drawer.dart';
+import '../themes/colors.dart';
 
-// class ActivityDetailPage extends StatefulWidget {
-//   final String title;
-//   final String imagePath;
-//   final String day;
-//   final String location;
-//   const ActivityDetailPage({
-//     super.key,
-//     required this.title,
-//     required this.imagePath,
-//     required this.day,
-//     required this.location,
-//   });
-
-//   @override
-//   State<ActivityDetailPage> createState() => _ActivityDetailPageState();
-// }
-
-// class _ActivityDetailPageState extends State<ActivityDetailPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: MyAppbar(
-//         onPressed: () => Navigator.pop(context),
-//         // onSelected: (value) {
-//         //   Navigator.push(
-//         //     context,
-//         //     MaterialPageRoute(
-//         //       builder: (context) => const HomePage(selectedCategory: 'All'),
-//         //     ),
-//         //   );
-//         // },
-//         icon: Icons.arrow_back_ios_new,
-//       ),
-//       drawer: MyDrawer(
-//         onSelectCategory: (category) {},
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(10.0),
-//         child: Center(
-//           child: Column(
-//             children: [
-//               const SizedBox(height: 10),
-//               // title
-//               MyHeading(text: widget.title),
-//               const SizedBox(height: 15),
-//               // image
-//               ClipRRect(
-//                 borderRadius: BorderRadius.circular(20),
-//                 child: Image.asset(
-//                   widget.imagePath,
-//                   width: double.infinity,
-//                   height: 250,
-//                   fit: BoxFit.cover, // Ensure the image covers the entire area
-//                 ),
-//               ),
-//               const SizedBox(height: 20),
-//               // text
-//               const Text(
-//                 'Số lượng sinh viên đã đăng ký',
-//                 style: TextStyle(
-//                   color: Color.fromARGB(255, 21, 63, 133),
-//                   fontFamily: 'Poppins-Semibold',
-//                   fontSize: 18,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-
-//               const SizedBox(height: 20),
-//               // number of register
-//               Container(
-//                 padding: const EdgeInsets.all(8.0),
-//                 decoration: const BoxDecoration(
-//                   color: Color.fromARGB(255, 0, 80, 157),
-//                   shape: BoxShape.circle,
-//                 ),
-//                 child: const Text(
-//                   '50',
-//                   style: TextStyle(
-//                     fontSize: 25, // Font size
-//                     fontWeight: FontWeight.bold, // Font weight
-//                     color: Colors.white, // Text color
-//                   ),
-//                 ),
-//               ),
-
-//               const SizedBox(height: 25),
-//               // infor detail
-//               Padding(
-//                 padding: const EdgeInsets.all(10.0),
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     const Text(
-//                       'Mô tả',
-//                       style: TextStyle(
-//                         color: Color.fromARGB(255, 21, 63, 133),
-//                         fontFamily: 'Poppins-SemiBold',
-//                         fontSize: 18,
-//                         fontWeight: FontWeight.bold,
-//                       ),
-//                     ),
-
-//                     // minimum
-//                     const Padding(
-//                       padding: EdgeInsets.only(left: 12.0, top: 4.0),
-//                       child: Row(
-//                         children: [
-//                           Text(
-//                             'Nhân sự tối thiểu: ',
-//                             style: TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Semibold',
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                           Text(
-//                             '20 cán bộ',
-//                             style: TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Medium',
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     ),
-
-//                     // maximum
-//                     const Padding(
-//                       padding: EdgeInsets.only(left: 12.0, top: 4.0),
-//                       child: Row(
-//                         children: [
-//                           Text(
-//                             'Nhân sự tối đa: ',
-//                             style: TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Semibold',
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                           Text(
-//                             '30 cán bộ',
-//                             style: TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Medium',
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     ),
-
-//                     // time
-//                     Padding(
-//                       padding: const EdgeInsets.only(left: 12.0, top: 4.0),
-//                       child: Row(
-//                         children: [
-//                           const Text(
-//                             'Thời gian: ',
-//                             style: TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Semibold',
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                           Text(
-//                             widget.day,
-//                             style: const TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Medium',
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     ),
-
-//                     //location
-//                     Padding(
-//                       padding: const EdgeInsets.only(left: 12.0, top: 4.0),
-//                       child: Row(
-//                         children: [
-//                           const Text(
-//                             'Địa điểm: ',
-//                             style: TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Semibold',
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           ),
-//                           Text(
-//                             widget.location,
-//                             style: const TextStyle(
-//                               color: Color.fromARGB(255, 40, 117, 187),
-//                               fontFamily: 'Poppins-Medium',
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-
-//               const SizedBox(height: 25),
-
-//               // button
-//               const MyButton(text: 'Đăng ký'),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 class ActivityDetailPage extends StatelessWidget {
   final String title;
   final String imagePath;
@@ -246,7 +35,7 @@ class ActivityDetailPage extends StatelessWidget {
           imagePath: imagePath,
           day: day,
           location: location,
-          registered: 50, // Giả sử giá trị mặc định
+          registered: 50,
         )),
       child: Scaffold(
         appBar: MyAppbar(
@@ -277,10 +66,10 @@ class ActivityDetailPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      const Text(
+                      Text(
                         'Số lượng sinh viên đã đăng ký',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 21, 63, 133),
+                          color: AppColor.headingColor,
                           fontFamily: 'Poppins-Semibold',
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -289,8 +78,8 @@ class ActivityDetailPage extends StatelessWidget {
                       const SizedBox(height: 20),
                       Container(
                         padding: const EdgeInsets.all(8.0),
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 0, 80, 157),
+                        decoration: BoxDecoration(
+                          color: AppColor.textColor,
                           shape: BoxShape.circle,
                         ),
                         child: Text(
@@ -308,10 +97,10 @@ class ActivityDetailPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               'Mô tả',
                               style: TextStyle(
-                                color: Color.fromARGB(255, 21, 63, 133),
+                                color: AppColor.headingColor,
                                 fontFamily: 'Poppins-SemiBold',
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -322,18 +111,18 @@ class ActivityDetailPage extends StatelessWidget {
                                   const EdgeInsets.only(left: 12.0, top: 4.0),
                               child: Row(
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Thời gian: ',
                                     style: TextStyle(
-                                      color: Color.fromARGB(255, 40, 117, 187),
+                                      color: AppColor.textColor,
                                       fontFamily: 'Poppins-Semibold',
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
                                     state.day,
-                                    style: const TextStyle(
-                                      color: Color.fromARGB(255, 40, 117, 187),
+                                    style: TextStyle(
+                                      color: AppColor.textColor,
                                       fontFamily: 'Poppins-Medium',
                                     ),
                                   )
@@ -345,18 +134,18 @@ class ActivityDetailPage extends StatelessWidget {
                                   const EdgeInsets.only(left: 12.0, top: 4.0),
                               child: Row(
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Địa điểm: ',
                                     style: TextStyle(
-                                      color: Color.fromARGB(255, 40, 117, 187),
+                                      color: AppColor.textColor,
                                       fontFamily: 'Poppins-Semibold',
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
                                     state.location,
-                                    style: const TextStyle(
-                                      color: Color.fromARGB(255, 40, 117, 187),
+                                    style: TextStyle(
+                                      color: AppColor.textColor,
                                       fontFamily: 'Poppins-Medium',
                                     ),
                                   )
