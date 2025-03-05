@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/colors.dart';
+
 class MyHeading extends StatelessWidget {
   final String text;
   const MyHeading({super.key, required this.text});
@@ -9,8 +11,8 @@ class MyHeading extends StatelessWidget {
     return Center(
       child: Text(
         text,
-        style: const TextStyle(
-            color: Color.fromARGB(255, 21, 61, 133),
+        style: TextStyle(
+            color: AppColor.headingColor,
             fontFamily: 'Poppins-SemiBold',
             fontSize: 25,
             fontWeight: FontWeight.bold),

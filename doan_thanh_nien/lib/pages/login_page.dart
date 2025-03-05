@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:doan_thanh_nien/components/my_textfield.dart';
+import 'package:doan_thanh_nien/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,7 @@ class LoginPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginBloc(context),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.bgColor,
         appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.all(10.0),

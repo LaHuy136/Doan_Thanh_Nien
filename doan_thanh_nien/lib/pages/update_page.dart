@@ -56,43 +56,71 @@ class UpdatePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 50),
+
                   const MyHeading(text: 'Cập nhật thông tin'),
+
                   const SizedBox(height: 50),
+
                   const MySubTextfield(text: 'Họ và tên'),
+
+                  const SizedBox(height: 20),
+
                   MyTextfield(
                     controller: nameController,
                     hintText: 'Nguyễn Văn A',
                     obsecureText: false,
                   ),
+
                   const SizedBox(height: 20),
+
                   const MySubTextfield(text: 'Giới tính'),
+                  
+                  const SizedBox(height: 20),
+
                   MyTextfield(
                     controller: genderController,
                     hintText: 'Nam / Nữ',
                     obsecureText: false,
                   ),
+
                   const SizedBox(height: 20),
+
                   const MySubTextfield(text: 'Ngày sinh'),
+
+                  const SizedBox(height: 20),
+                  
                   MyTextfield(
                     controller: dateOfBirthController,
                     hintText: 'Ngày / Tháng / Năm',
                     obsecureText: false,
+
                   ),
                   const SizedBox(height: 20),
+
                   const MySubTextfield(text: 'Khoa - Lớp'),
+
+                  const SizedBox(height: 20),
+
                   MyTextfield(
                     controller: facultyController,
                     hintText: 'Công nghệ thông tin - K21',
                     obsecureText: false,
                   ),
+
                   const SizedBox(height: 20),
+
                   const MySubTextfield(text: 'Mã sinh viên'),
+
+                  const SizedBox(height: 20),
+                  
                   MyTextfield(
                     controller: studentIDController,
                     hintText: '102210xxxxx',
                     obsecureText: false,
                   ),
+
                   const SizedBox(height: 20),
+
                   MyButton(
                     onTap: () {
                       context.read<UpdateBloc>().add(UpdateUserDataEvent(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/colors.dart';
+
 class MyTextlink extends StatelessWidget {
   final String text;
   final Function()? onTap;
@@ -15,11 +17,11 @@ class MyTextlink extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: 'Roboto-SemiBold',
-              fontSize: 14,
-              color: Color.fromARGB(255, 21, 61, 133),
+              fontSize: 16,
+              color: AppColor.headingColor,
             ),
           ),
         ),
