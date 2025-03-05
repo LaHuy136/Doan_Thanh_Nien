@@ -1,0 +1,150 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/event/profile_event.dart';
+import '../bloc/profile_bloc.dart';
+import '../bloc/state/profle_state.dart';
+import '../components/my_appbar.dart';
+import '../components/my_divider.dart';
+import '../components/my_avatar.dart';
+import '../components/my_button.dart';
+import '../components/my_drawer.dart';
+import '../components/my_heading.dart';
+import 'update_page.dart';
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ProfileBloc()
+        ..add(LoadProfile(
+          name: "Nguyễn Văn A",
+          gender: "Nam",
+          dateOfBirth: "01/01/2000",
+          faculty: "CNTT",
+          studentId: "12345678",
+        )),
+      child: Scaffold(
+        appBar: MyAppbar(
+          onPressed: () => Navigator.pop(context),
+          icon: Icons.arrow_back_ios_new,
+        ),
+        drawer: MyDrawer(onSelectCategory: (category) {}),
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Center(
+            child: BlocBuilder<ProfileBloc, ProfileState>(
+              builder: (context, state) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const MyHeading(text: 'Thông tin cá nhân'),
+                    const SizedBox(height: 20),
+                    const MyAvatar(),
+                    const MyDivider(),
+                    Row(
+                      children: [
+                        _buildLabelColumn(),
+                        _buildValueColumn(context, state),
+                      ],
+                    ),
+                    const SizedBox(height: 25),
+                    MyButton(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UpdatePage(
+                              name: state.name,
+                              gender: state.gender,
+                              dateOfBirth: state.dateOfBirth,
+                              faculty: state.faculty,
+                              studentId: state.studentId,
+                            ),
+                          ),
+                        );
+                      },
+                      text: 'Cập nhật',
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLabelColumn() {
+    return Container(
+      margin: const EdgeInsets.only(left: 25),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildLabelText('Họ và tên'),
+          _buildLabelText('Giới tính'),
+          _buildLabelText('Ngày sinh'),
+          _buildLabelText('Khoa - Lớp'),
+          _buildLabelText('Mã sinh viên'),
+          _buildLabelText('Chức vụ'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildValueColumn(BuildContext context, ProfileState state) {
+    return Container(
+      margin: const EdgeInsets.only(left: 80),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildValueText(state.name),
+          _buildValueText(state.gender),
+          _buildValueText(state.dateOfBirth),
+          _buildValueText(state.faculty),
+          _buildValueText(state.studentId),
+          _buildValueText('Sinh viên'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLabelText(String text) {
+    return Column(
+      children: [
+        Text(
+          textAlign: TextAlign.left,
+          text,
+          style: const TextStyle(
+            color: Color.fromARGB(255, 46, 46, 93),
+            fontFamily: 'Poppins-Regular',
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+        ),
+        const MyDivider(),
+        const SizedBox(height: 8),
+      ],
+    );
+  }
+
+  Widget _buildValueText(String text) {
+    return Column(
+      children: [
+        Text(
+          textAlign: TextAlign.left,
+          text,
+          style: const TextStyle(
+            color: Color.fromARGB(255, 46, 46, 93),
+            fontFamily: 'Poppins-Medium',
+            fontSize: 16,
+          ),
+        ),
+        const MyDivider(),
+        const SizedBox(height: 8),
+      ],
+    );
+  }
+}

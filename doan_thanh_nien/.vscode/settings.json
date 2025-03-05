@@ -1,0 +1,19 @@
+{
+  "cmake.ignoreCMakeListsMissing": true,
+  "files.exclude": {
+    ".dart_tool": true,
+    ".gitignore": true,
+    ".idea": true,
+    ".metadata": true,
+    ".vscode": true,
+    "analysis_options.yaml": true,
+    "doan_thanh_nien.iml": true,
+    "linux": true,
+    "macos": true,
+    "pubspec.lock": true,
+    "README.md": true,
+    "test": true,
+    "web": true,
+    "windows": true
+  }
+}
