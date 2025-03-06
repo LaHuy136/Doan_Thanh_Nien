@@ -18,13 +18,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   void _onFetchActivities(
       FetchActivitiesEvent event, Emitter<HomeState> emit) async {
     emit(state.copyWith(
-        isLoading: true)); // Hiển thị loading trước khi lấy dữ liệu
+        isLoading: true)); 
 
     try {
       final activities = News().getActivitiesByCategory(selectedCategory);
       emit(state.copyWith(activities: activities, isLoading: false));
     } catch (e) {
-      emit(state.copyWith(isLoading: false)); // Dừng loading nếu có lỗi
+      emit(state.copyWith(isLoading: false)); 
     }
   }
 }

@@ -156,7 +156,7 @@ class ActivityDetailPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 25),
-                      const MyButton(text: 'Đăng ký'),
+                      const MyButton(text: 'Đăng ký',),
                     ],
                   ),
                 ),

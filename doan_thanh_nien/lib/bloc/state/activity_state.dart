@@ -1,6 +1,11 @@
-sealed class ActivityDetailState {}
+import 'package:equatable/equatable.dart';
 
-class ActivityDetailInitial extends ActivityDetailState {}
+sealed class ActivityDetailState extends Equatable {}
+
+class ActivityDetailInitial extends ActivityDetailState {
+  @override
+  List<Object?> get props => [];
+}
 
 class ActivityDetailLoaded extends ActivityDetailState {
   final String title;
@@ -16,4 +21,7 @@ class ActivityDetailLoaded extends ActivityDetailState {
     required this.location,
     required this.registered,
   });
+
+  @override
+  List<Object?> get props => [title, imagePath, day, location, registered];
 }
