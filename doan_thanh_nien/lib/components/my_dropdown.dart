@@ -37,63 +37,66 @@ class MyDropdown extends StatelessWidget {
             position: RelativeRect.fromLTRB(0, 370, 0, 0),
             items: <PopupMenuEntry<String>>[
               PopupMenuItem<String>(
-                value: 'works',
+                value: 'traditional',
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                     leading: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Icon(
                         Icons.minimize,
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                     title: Text(
-                      'Hoạt động tình nguyện lao động',
+                      'Hoạt động truyền thống',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                   ),
                 ),
               ),
               PopupMenuItem<String>(
-                value: 'gifts',
+                value: 'research',
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                     leading: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Icon(
                         Icons.minimize,
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                     title: Text(
-                      'Hoạt động tình nguyện hiến tặng',
+                      'Hoạt động học thuật',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                   ),
                 ),
               ),
               PopupMenuItem<String>(
-                value: 'supports',
+                value: 'union',
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                     leading: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Icon(
                         Icons.minimize,
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                     title: Text(
-                      'Hoạt động tình nguyện hỗ trợ',
+                      'Hoạt động liên chi đoàn',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                   ),
@@ -104,17 +107,18 @@ class MyDropdown extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                     leading: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Icon(
                         Icons.minimize,
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                     title: Text(
                       'Hoạt động khác',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColor.bgColor,
                       ),
                     ),
                   ),

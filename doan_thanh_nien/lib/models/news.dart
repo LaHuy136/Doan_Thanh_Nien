@@ -6,31 +6,31 @@ import 'volunteer_activities.dart';
 class News extends ChangeNotifier {
   // list of activity
   final List<volunteerActivities> _activity = [
-    // works
+    // traditional
     volunteerActivities(
       imagePath: 'assets/images/mua_he.jpg',
-      title: 'Mùa hè xanh 2024',
+      title: 'Trồng cây xanh',
       day: '27/08/2024 - 10/10/2024',
       location: 'Xã Pá Hu, huyện Trạm Tấu, Tỉnh Yên Bái',
-      category: volunteerActivitiesCategory.works,
+      category: volunteerActivitiesCategory.traditional,
     ),
 
-    // gifts
+    // research
     volunteerActivities(
-      imagePath: 'assets/images/hien_mau.jpg',
-      title: 'Hiến máu nhân đạo',
+      imagePath: 'assets/images/research.jpg',
+      title: 'Dạy các bé học vẽ',
       day: '20/08/2024 - 22/08/2024',
       location: 'Trường Đại học Bách Khoa Hà Nội',
-      category: volunteerActivitiesCategory.gifts,
+      category: volunteerActivitiesCategory.research,
     ),
 
-    // supports
+    // union
     volunteerActivities(
-      imagePath: 'assets/images/tiep_suc.jpg',
-      title: 'Tiếp sức mùa thi 2024',
+      imagePath: 'assets/images/union.jpg',
+      title: 'Giúp đỡ các bé hoàn cảnh khó khăn',
       day: '27/07/2024 - 05/08/2024',
       location: 'Trường THCS Phú Diễn A, Hà Nội',
-      category: volunteerActivitiesCategory.supports,
+      category: volunteerActivitiesCategory.union,
     ),
 
     // another
@@ -52,4 +52,5 @@ class News extends ChangeNotifier {
             activity.category.toString().split('.').last == category)
         .toList();
   }
+
 }

@@ -5,9 +5,14 @@ import '../themes/colors.dart';
 
 class MyActivityTile extends StatelessWidget {
   final volunteerActivities activity;
+  // final IconData icon;
   final VoidCallback onTap;
-  const MyActivityTile(
-      {super.key, required this.onTap, required this.activity});
+  const MyActivityTile({
+    super.key,
+    required this.onTap,
+    required this.activity,
+    // required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +91,8 @@ class MyActivityTile extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: onTap,
-                      icon: const Icon(Icons.add),
-                      color: Colors.white,
+                      icon: const Icon(Icons.add_rounded),
+                      color: AppColor.bgColor,
                     ),
                   ),
                 ),

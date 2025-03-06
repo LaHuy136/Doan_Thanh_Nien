@@ -17,8 +17,8 @@ void main() async{
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => HomeBloc('All')), 
         BlocProvider(create: (context) => ActivityDetailBloc()), 
+        BlocProvider(create: (context) => HomeBloc('All')), 
         BlocProvider(create: (context) => DrawerBloc()..add(LoadUserDataEvent())),
         BlocProvider(create: (context) => LoginBloc(context)), 
         BlocProvider(create: (context) => SignUpBloc(context)), 

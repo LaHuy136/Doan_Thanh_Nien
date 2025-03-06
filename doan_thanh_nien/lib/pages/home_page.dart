@@ -10,7 +10,6 @@ import '../components/my_activity_tile.dart';
 import '../components/my_appbar.dart';
 import '../components/my_drawer.dart';
 import '../components/my_heading.dart';
-// import 'activity_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   final String selectedCategory;
@@ -35,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         drawer: MyDrawer(
           onSelectCategory: (category) {
             setState(() {
-              selectedCategory = category; // Cập nhật danh mục
+              selectedCategory = category; 
             });
             context
                 .read<HomeBloc>()
@@ -51,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  const MyHeading(text: 'Hoạt động tình nguyện nổi bật'),
+                  const MyHeading(text: 'Các hoạt động nổi bật'),
                   const SizedBox(height: 25),
                   Expanded(
                     child: ListView.builder(

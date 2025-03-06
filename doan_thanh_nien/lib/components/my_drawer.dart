@@ -55,10 +55,11 @@ class MyDrawer extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           const Text(
-                            'Trường đại học Bách Khoa',
+                            'Trường Đại học Bách Khoa',
                             style: TextStyle(
                               fontFamily: 'OpenSans-Regular',
                               fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
