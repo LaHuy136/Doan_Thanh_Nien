@@ -10,7 +10,7 @@ class News extends ChangeNotifier {
     volunteerActivities(
       imagePath: 'assets/images/mua_he.jpg',
       title: 'Trồng cây xanh',
-      day: '27/08/2024 - 10/10/2024',
+      day: '27/6/2025 - 29/6/2025',
       location: 'Xã Pá Hu, huyện Trạm Tấu, Tỉnh Yên Bái',
       category: volunteerActivitiesCategory.traditional,
     ),

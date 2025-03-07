@@ -11,19 +11,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/drawer_bloc.dart';
 import 'bloc/event/drawer_event.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ActivityDetailBloc()), 
-        BlocProvider(create: (context) => HomeBloc('All')), 
-        BlocProvider(create: (context) => DrawerBloc()..add(LoadUserDataEvent())),
-        BlocProvider(create: (context) => LoginBloc(context)), 
-        BlocProvider(create: (context) => SignUpBloc(context)), 
+        BlocProvider(create: (context) => ActivityDetailBloc()),
+        BlocProvider(create: (context) => HomeBloc('All')),
+        BlocProvider(
+            create: (context) => DrawerBloc()..add(LoadUserDataEvent())),
+        BlocProvider(create: (context) => LoginBloc(context)),
+        BlocProvider(create: (context) => SignUpBloc(context)),
         BlocProvider(create: (context) => UpdateBloc()),
-        BlocProvider(create: (context) => ProfileBloc()), 
+        BlocProvider(create: (context) => ProfileBloc()),
       ],
       child: const MyApp(),
     ),
@@ -35,11 +36,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Đoàn Thanh Niên',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginPage(),
+      home: LoginPage(),
     );
   }
 }

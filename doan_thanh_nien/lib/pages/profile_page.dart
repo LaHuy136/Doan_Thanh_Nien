@@ -10,6 +10,7 @@ import '../components/my_button.dart';
 import '../components/my_drawer.dart';
 import '../components/my_heading.dart';
 import '../themes/colors.dart';
+import 'home_page.dart';
 import 'update_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -28,7 +29,14 @@ class ProfilePage extends StatelessWidget {
         )),
       child: Scaffold(
         appBar: MyAppbar(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomePage(
+                selectedCategory: 'All',
+              ),
+            ),
+          ),
           icon: Icons.arrow_back_ios_new,
         ),
         drawer: MyDrawer(onSelectCategory: (category) {}),

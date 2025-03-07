@@ -1,28 +1,75 @@
 // ignore_for_file: camel_case_types
-
+import 'package:intl/intl.dart';
 class volunteerActivities {
   final String imagePath;
   final String title;
   final String day;
   final String location;
-  final bool? isRegistered;
-  final volunteerActivitiesCategory? category;
+  final bool isRegistered;
+  final volunteerActivitiesCategory category;
 
   volunteerActivities({
     required this.imagePath,
     required this.title,
     required this.day,
     required this.location,
-    this.category,
-    this.isRegistered,
+    this.isRegistered = false,
+    required this.category,
   });
+
+  factory volunteerActivities.fromJson(Map<String, dynamic> json) {
+    return volunteerActivities(
+      imagePath: json['imagePath'] ?? '',
+      title: json['title'] ?? '',
+      day: json['day'] ?? '',
+      location: json['location'] ?? '',
+      isRegistered: json['isRegistered'] ?? false,
+      category: volunteerActivitiesCategory.values[json['category']],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'imagePath': imagePath,
+      'title': title,
+      'day': day,
+      'location': location,
+      'isRegistered': isRegistered,
+      'category': category.index,
+    };
+  }
+
+  volunteerActivities copyWith({
+    String? imagePath,
+    String? title,
+    String? day,
+    String? location,
+    bool? isRegistered,
+    volunteerActivitiesCategory? category,
+  }) {
+    return volunteerActivities(
+      imagePath: imagePath ?? this.imagePath,
+      title: title ?? this.title,
+      day: day ?? this.day,
+      location: location ?? this.location,
+      isRegistered: isRegistered ?? this.isRegistered,
+      category: category ?? this.category,
+    );
+  }
+
   @override
   String toString() {
     return 'Title: $title, Day: $day, Location: $location, Category: $category';
   }
+
+  bool isExpired() {
+    final dateFormat = DateFormat('dd/MM/yyyy');
+    final dates = day.split(' - ');
+    final endDate = dateFormat.parse(dates[1]);
+    return DateTime.now().isAfter(endDate);
+  }
 }
 
-// volunteerActivites categories
 enum volunteerActivitiesCategory {
   traditional,
   research,

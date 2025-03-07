@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   // Background
   static Color bgColor = const Color.fromARGB(255, 255, 255, 255);
+  static Color bgEvidenceColor = const Color.fromARGB(255, 88, 88, 88);
 
   // Heading
   static Color headingColor = const Color.fromARGB(255, 21, 61, 133);
@@ -27,4 +28,8 @@ class AppColor {
 
   // Divider
   static Color dividerColor = const Color.fromARGB(255, 239, 239, 239);
+
+  // Snackbar
+  static Color bgsnackBarColorSuccess = const Color.fromARGB(255, 57, 196, 57);
+  static Color bgsnackBarColorFailure = const Color.fromARGB(255, 181, 59, 59);
 }

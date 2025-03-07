@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         drawer: MyDrawer(
           onSelectCategory: (category) {
             setState(() {
-              selectedCategory = category; 
+              selectedCategory = category;
             });
             context
                 .read<HomeBloc>()
@@ -63,10 +63,11 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ActivityDetailPage(
-                                  title: activity.title,
-                                  imagePath: activity.imagePath,
-                                  day: activity.day,
-                                  location: activity.location),
+                                title: activity.title,
+                                imagePath: activity.imagePath,
+                                day: activity.day,
+                                location: activity.location,
+                              ),
                             ),
                           ),
                         );
