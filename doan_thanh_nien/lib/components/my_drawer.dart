@@ -1,9 +1,11 @@
 // ignore_for_file: unnecessary_string_interpolations, prefer_const_constructors
 
 import 'package:doan_thanh_nien/components/my_drawer_tile.dart';
+import 'package:doan_thanh_nien/pages/activity_registered_page.dart';
 import 'package:doan_thanh_nien/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/activity_bloc.dart';
 import '../bloc/drawer_bloc.dart';
 import '../bloc/event/drawer_event.dart';
 import '../bloc/state/drawer_state.dart';
@@ -50,16 +52,16 @@ class MyDrawer extends StatelessWidget {
                           Text(
                             state.name,
                             style: const TextStyle(
-                                fontFamily: 'OpenSans-Bold',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                              fontFamily: 'OpenSans-Bold',
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           const Text(
                             'Trường Đại học Bách Khoa',
                             style: TextStyle(
                               fontFamily: 'OpenSans-Regular',
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -114,6 +116,26 @@ class MyDrawer extends StatelessWidget {
                   },
                   text: 'Hoạt động tình nguyện',
                   icon: Icons.volunteer_activism_outlined,
+                ),
+
+                const SizedBox(height: 15),
+
+                MyDrawerTile(
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BlocProvider.value(
+                          value: context.read<ActivityDetailBloc>(),
+                          child: RegisteredActivitiesPage(),
+                        ),
+                      ),
+                    );
+                  },
+                  text: 'Các hoạt động đã đăng ký',
+                  icon: Icons.local_activity_outlined,
                 ),
 
                 const SizedBox(height: 15),
