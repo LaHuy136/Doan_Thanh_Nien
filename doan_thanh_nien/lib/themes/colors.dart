@@ -32,4 +32,5 @@ class AppColor {
   // Snackbar
   static Color bgsnackBarColorSuccess = const Color.fromARGB(255, 57, 196, 57);
   static Color bgsnackBarColorFailure = const Color.fromARGB(255, 181, 59, 59);
+  static Color textSnackBarColor = const Color.fromARGB(255, 255, 255, 255);
 }

@@ -1,4 +1,4 @@
-import 'package:doan_thanh_nien/models/volunteer_activities.dart';
+import 'package:doan_thanh_nien/helpers/volunteer_activities.dart';
 import 'package:flutter/material.dart';
 
 import '../themes/colors.dart';

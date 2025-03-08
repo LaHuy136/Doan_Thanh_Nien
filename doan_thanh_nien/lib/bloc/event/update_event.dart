@@ -1,6 +1,9 @@
-sealed class UpdateEvent {}
+import 'package:equatable/equatable.dart';
 
-class LoadUserDataEvent extends UpdateEvent {}
+abstract class UpdateEvent extends Equatable {
+  @override
+  List<Object> get props => [];
+}
 
 class UpdateUserDataEvent extends UpdateEvent {
   final String name;
@@ -16,4 +19,7 @@ class UpdateUserDataEvent extends UpdateEvent {
     required this.faculty,
     required this.studentId,
   });
+
+  @override
+  List<Object> get props => [name, gender, dateOfBirth, faculty, studentId];
 }

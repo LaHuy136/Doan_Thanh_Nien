@@ -1,4 +1,4 @@
-sealed class LoginEvent {}
+abstract class LoginEvent {}
 
 class StudentIDChanged extends LoginEvent {
   final String studentID;
@@ -11,4 +11,3 @@ class PasswordChanged extends LoginEvent {
 }
 
 class LoginSubmitted extends LoginEvent {}
-class LoginSuccess extends LoginEvent {}
