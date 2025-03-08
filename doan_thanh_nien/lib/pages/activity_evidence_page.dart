@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, library_private_types_in_public_api
 
 import 'package:doan_thanh_nien/components/my_appbar.dart';
 import 'package:doan_thanh_nien/components/my_heading.dart';

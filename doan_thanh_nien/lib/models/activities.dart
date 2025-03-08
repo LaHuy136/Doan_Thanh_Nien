@@ -1,7 +1,7 @@
 // import 'package:doan_thanh_nien/components/my_icon_button_date.dart';
 import 'package:flutter/material.dart';
 
-import 'volunteer_activities.dart';
+import '../helpers/volunteer_activities.dart';
 
 class News extends ChangeNotifier {
   // list of activity
@@ -12,6 +12,7 @@ class News extends ChangeNotifier {
       title: 'Trồng cây xanh',
       day: '27/6/2025 - 29/6/2025',
       location: 'Xã Pá Hu, huyện Trạm Tấu, Tỉnh Yên Bái',
+      registeredNumber: 0,
       category: volunteerActivitiesCategory.traditional,
     ),
 
@@ -21,6 +22,7 @@ class News extends ChangeNotifier {
       title: 'Dạy các bé học vẽ',
       day: '20/08/2024 - 22/08/2024',
       location: 'Trường Đại học Bách Khoa Hà Nội',
+      registeredNumber: 0,
       category: volunteerActivitiesCategory.research,
     ),
 
@@ -30,6 +32,7 @@ class News extends ChangeNotifier {
       title: 'Giúp đỡ các bé hoàn cảnh khó khăn',
       day: '27/07/2024 - 05/08/2024',
       location: 'Trường THCS Phú Diễn A, Hà Nội',
+      registeredNumber: 0,
       category: volunteerActivitiesCategory.union,
     ),
 
@@ -39,6 +42,7 @@ class News extends ChangeNotifier {
       title: 'Trồng cây xanh 2024',
       day: '18/09/2024 - 20/09/2024',
       location: 'Công viên Thống Nhất, Hà Nội',
+      registeredNumber: 0,
       category: volunteerActivitiesCategory.another,
     ),
   ];
@@ -53,4 +57,10 @@ class News extends ChangeNotifier {
         .toList();
   }
 
+  List<volunteerActivities> filteredActivities(String title) {
+    return _activity
+        .where((activity) =>
+            activity.title.toLowerCase().contains(title.toLowerCase()))
+        .toList();
+  }
 }

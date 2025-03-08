@@ -1,4 +1,4 @@
-import '../../models/volunteer_activities.dart';
+import '../../helpers/volunteer_activities.dart';
 
 class HomeState {
   final List<volunteerActivities> activities;

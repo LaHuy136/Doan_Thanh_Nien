@@ -5,6 +5,7 @@ class volunteerActivities {
   final String title;
   final String day;
   final String location;
+  final int registeredNumber;
   final bool isRegistered;
   final volunteerActivitiesCategory category;
 
@@ -13,6 +14,7 @@ class volunteerActivities {
     required this.title,
     required this.day,
     required this.location,
+    required this.registeredNumber,
     this.isRegistered = false,
     required this.category,
   });
@@ -23,6 +25,7 @@ class volunteerActivities {
       title: json['title'] ?? '',
       day: json['day'] ?? '',
       location: json['location'] ?? '',
+      registeredNumber: json['registeredNumber'] ?? 0,
       isRegistered: json['isRegistered'] ?? false,
       category: volunteerActivitiesCategory.values[json['category']],
     );
@@ -34,6 +37,7 @@ class volunteerActivities {
       'title': title,
       'day': day,
       'location': location,
+      'registeredNumber': registeredNumber,
       'isRegistered': isRegistered,
       'category': category.index,
     };
@@ -44,6 +48,7 @@ class volunteerActivities {
     String? title,
     String? day,
     String? location,
+    int? registeredNumber,
     bool? isRegistered,
     volunteerActivitiesCategory? category,
   }) {
@@ -52,6 +57,7 @@ class volunteerActivities {
       title: title ?? this.title,
       day: day ?? this.day,
       location: location ?? this.location,
+      registeredNumber: registeredNumber ?? this.registeredNumber,
       isRegistered: isRegistered ?? this.isRegistered,
       category: category ?? this.category,
     );

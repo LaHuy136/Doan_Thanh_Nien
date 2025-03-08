@@ -3,6 +3,7 @@
 import 'package:doan_thanh_nien/components/my_appbar.dart';
 import 'package:doan_thanh_nien/components/my_button.dart';
 import 'package:doan_thanh_nien/components/my_heading.dart';
+import 'package:doan_thanh_nien/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,43 +11,40 @@ import '../bloc/activity_bloc.dart';
 import '../bloc/event/activity_event.dart';
 import '../bloc/state/activity_state.dart';
 import '../components/my_drawer.dart';
-import '../models/volunteer_activities.dart';
+import '../helpers/volunteer_activities.dart';
 import '../themes/colors.dart';
 import 'activity_registered_page.dart';
 
 class ActivityDetailPage extends StatelessWidget {
-  final String title;
-  final String imagePath;
-  final String day;
-  final String location;
-  final int? registered;
   final volunteerActivitiesCategory? category;
-  final volunteerActivities? activity;
+  final volunteerActivities activity;
 
   const ActivityDetailPage({
     super.key,
-    required this.title,
-    required this.imagePath,
-    required this.day,
-    required this.location,
     this.category,
-    this.activity,
-    this.registered,
+    required this.activity,
   });
 
   @override
   Widget build(BuildContext context) {
     context.read<ActivityDetailBloc>().add(LoadActivityDetail(
-          title: title,
-          imagePath: imagePath,
-          day: day,
-          location: location,
-          registered: registered,
+          title: activity.title,
+          imagePath: activity.imagePath,
+          day: activity.day,
+          location: activity.location,
+          registeredNumber: activity.registeredNumber,
         ));
 
     return Scaffold(
       appBar: MyAppbar(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(
+              selectedCategory: 'All',
+            ),
+          ),
+        ),
         icon: Icons.arrow_back_ios_new,
       ),
       drawer: MyDrawer(
@@ -171,6 +169,7 @@ class ActivityDetailPage extends StatelessWidget {
                           imagePath: state.imagePath,
                           day: state.day,
                           location: state.location,
+                          registeredNumber: state.numberRegistered,
                           isRegistered: true,
                           category:
                               category ?? volunteerActivitiesCategory.another,

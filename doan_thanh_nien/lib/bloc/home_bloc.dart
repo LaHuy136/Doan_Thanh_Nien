@@ -1,7 +1,7 @@
 // home_page_bloc.dart
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:doan_thanh_nien/models/news.dart';
+import 'package:doan_thanh_nien/models/activities.dart';
 import 'event/home_event.dart';
 import 'state/home_state.dart';
 

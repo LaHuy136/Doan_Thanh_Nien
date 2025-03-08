@@ -10,6 +10,8 @@ import '../components/my_activity_tile.dart';
 import '../components/my_appbar.dart';
 import '../components/my_drawer.dart';
 import '../components/my_heading.dart';
+import '../helpers/search_delegate.dart';
+import '../models/activities.dart';
 
 class HomePage extends StatefulWidget {
   final String selectedCategory;
@@ -21,6 +23,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String selectedCategory = 'All';
+  String searchQuery = '';
+  final News news = News();
+
+  void _onSearchChanged(String query) {
+    setState(() {
+      searchQuery = query.toLowerCase();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -28,7 +39,15 @@ class _HomePageState extends State<HomePage> {
           HomeBloc(widget.selectedCategory)..add(FetchActivitiesEvent()),
       child: Scaffold(
         appBar: MyAppbar(
-          onPressed: () {},
+          onPressed: () {
+            showSearch(
+              context: context,
+              delegate: ActivitySearchDelegate(
+                activities: news.getActivitiesByCategory('All'),
+                onSearchChanged: _onSearchChanged,
+              ),
+            );
+          },
           icon: Icons.search_outlined,
         ),
         drawer: MyDrawer(
@@ -63,10 +82,7 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ActivityDetailPage(
-                                title: activity.title,
-                                imagePath: activity.imagePath,
-                                day: activity.day,
-                                location: activity.location,
+                                activity: activity,
                               ),
                             ),
                           ),

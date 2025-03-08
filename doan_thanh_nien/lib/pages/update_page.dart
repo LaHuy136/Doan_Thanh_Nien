@@ -1,3 +1,4 @@
+import 'package:doan_thanh_nien/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/event/update_event.dart';
@@ -6,7 +7,8 @@ import '../bloc/update_bloc.dart';
 import '../components/my_button.dart';
 import '../components/my_heading.dart';
 import '../components/my_sub_textfield.dart';
-import '../components/my_textfield.dart'; 
+import '../components/my_textfield.dart';
+import '../themes/colors.dart';
 
 class UpdatePage extends StatelessWidget {
   final String name;
@@ -39,7 +41,17 @@ class UpdatePage extends StatelessWidget {
           child: BlocConsumer<UpdateBloc, UpdateState>(
             listener: (context, state) {
               if (state is UpdateSuccess) {
-                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      duration: const Duration(seconds: 1),
+                      backgroundColor: AppColor.bgsnackBarColorSuccess,
+                      content: Text(
+                        'Cập nhật thành công!',
+                        style: TextStyle(
+                          color: AppColor.textSnackBarColor,
+                        ),
+                      )),
+                );
               }
             },
             builder: (context, state) {
@@ -56,80 +68,64 @@ class UpdatePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 50),
-
                   const MyHeading(text: 'Cập nhật thông tin'),
-
                   const SizedBox(height: 50),
-
                   const MySubTextfield(text: 'Họ và tên'),
-
                   const SizedBox(height: 20),
-
                   MyTextfield(
                     controller: nameController,
                     hintText: 'Nguyễn Văn A',
                     obsecureText: false,
                   ),
-
                   const SizedBox(height: 20),
-
                   const MySubTextfield(text: 'Giới tính'),
-                  
                   const SizedBox(height: 20),
-
                   MyTextfield(
                     controller: genderController,
                     hintText: 'Nam / Nữ',
                     obsecureText: false,
                   ),
-
                   const SizedBox(height: 20),
-
                   const MySubTextfield(text: 'Ngày sinh'),
-
                   const SizedBox(height: 20),
-                  
                   MyTextfield(
                     controller: dateOfBirthController,
                     hintText: 'Ngày / Tháng / Năm',
                     obsecureText: false,
-
                   ),
                   const SizedBox(height: 20),
-
                   const MySubTextfield(text: 'Khoa - Lớp'),
-
                   const SizedBox(height: 20),
-
                   MyTextfield(
                     controller: facultyController,
                     hintText: 'Công nghệ thông tin - K21',
                     obsecureText: false,
                   ),
-
                   const SizedBox(height: 20),
-
                   const MySubTextfield(text: 'Mã sinh viên'),
-
                   const SizedBox(height: 20),
-                  
                   MyTextfield(
                     controller: studentIDController,
                     hintText: '102210xxxxx',
                     obsecureText: false,
                   ),
-
                   const SizedBox(height: 20),
-
                   MyButton(
                     onTap: () {
                       context.read<UpdateBloc>().add(UpdateUserDataEvent(
-                        name: nameController.text,
-                        gender: genderController.text,
-                        dateOfBirth: dateOfBirthController.text,
-                        faculty: facultyController.text,
-                        studentId: studentIDController.text,
-                      ));
+                            name: nameController.text,
+                            gender: genderController.text,
+                            dateOfBirth: dateOfBirthController.text,
+                            faculty: facultyController.text,
+                            studentId: studentIDController.text,
+                          ));
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const HomePage(selectedCategory: 'All'),
+                        ),
+                      );
                     },
                     text: 'Xác nhận',
                   ),

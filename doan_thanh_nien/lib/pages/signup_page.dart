@@ -17,15 +17,15 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  String name = '';
-  String password = '';
-  String gender = '';
-  String dateOfBirth = '';
-  String faculty = '';
-  String studentId = '';
-
   @override
   Widget build(BuildContext context) {
+    final nameController = TextEditingController();
+    final passwordController = TextEditingController();
+    final genderController = TextEditingController();
+    final dateOfBirthController = TextEditingController();
+    final facultyController = TextEditingController();
+    final studentIdController = TextEditingController();
+
     return BlocProvider(
       create: (context) => SignUpBloc(context),
       child: Scaffold(
@@ -45,9 +45,10 @@ class _SignUpState extends State<SignUp> {
                         const MySubTextfield(text: 'Họ và tên'),
                         const SizedBox(height: 15),
                         MyTextfield(
-                          onChanged: (value) => setState(() {
-                            name = value;
-                          }),
+                          controller: nameController,
+                          onChanged: (value) {
+                            context.read<SignUpBloc>().add(NameChanged(value));
+                          },
                           hintText: 'Nguyễn Văn A',
                           obsecureText: false,
                         ),
@@ -55,9 +56,12 @@ class _SignUpState extends State<SignUp> {
                         const MySubTextfield(text: 'Mật khẩu'),
                         const SizedBox(height: 15),
                         MyTextfield(
-                          onChanged: (value) => setState(() {
-                            name = value;
-                          }),
+                          controller: passwordController,
+                          onChanged: (value) {
+                            context
+                                .read<SignUpBloc>()
+                                .add(PasswordChanged(value));
+                          },
                           hintText: '******',
                           obsecureText: true,
                         ),
@@ -65,9 +69,12 @@ class _SignUpState extends State<SignUp> {
                         const MySubTextfield(text: 'Giới tính'),
                         const SizedBox(height: 15),
                         MyTextfield(
-                          onChanged: (value) => setState(() {
-                            gender = value;
-                          }),
+                          controller: genderController,
+                          onChanged: (value) {
+                            context
+                                .read<SignUpBloc>()
+                                .add(GenderChanged(value));
+                          },
                           hintText: 'Nam / Nữ',
                           obsecureText: false,
                         ),
@@ -75,9 +82,12 @@ class _SignUpState extends State<SignUp> {
                         const MySubTextfield(text: 'Ngày sinh'),
                         const SizedBox(height: 15),
                         MyTextfield(
-                          onChanged: (value) => setState(() {
-                            dateOfBirth = value;
-                          }),
+                          controller: dateOfBirthController,
+                          onChanged: (value) {
+                            context
+                                .read<SignUpBloc>()
+                                .add(DateOfBirthChanged(value));
+                          },
                           hintText: 'Ngày / Tháng / Năm',
                           obsecureText: false,
                         ),
@@ -85,9 +95,12 @@ class _SignUpState extends State<SignUp> {
                         const MySubTextfield(text: 'Khoa - Lớp'),
                         const SizedBox(height: 15),
                         MyTextfield(
-                          onChanged: (value) => setState(() {
-                            faculty = value;
-                          }),
+                          controller: facultyController,
+                          onChanged: (value) {
+                            context
+                                .read<SignUpBloc>()
+                                .add(FacultyChanged(value));
+                          },
                           hintText: 'Công nghệ thông tin - K21',
                           obsecureText: false,
                         ),
@@ -95,9 +108,12 @@ class _SignUpState extends State<SignUp> {
                         const MySubTextfield(text: 'Mã sinh viên'),
                         const SizedBox(height: 15),
                         MyTextfield(
-                          onChanged: (value) => setState(() {
-                            studentId = value;
-                          }),
+                          controller: studentIdController,
+                          onChanged: (value) {
+                            context
+                                .read<SignUpBloc>()
+                                .add(StudentIdChanged(value));
+                          },
                           hintText: '102210xxxxx',
                           obsecureText: false,
                         ),
@@ -105,19 +121,19 @@ class _SignUpState extends State<SignUp> {
                         MyButton(
                           onTap: () {
                             context.read<SignUpBloc>().add(SignUpSubmitted(
-                                  name: name,
-                                  password: password,
-                                  gender: gender,
-                                  dateOfBirth: dateOfBirth,
-                                  faculty: faculty,
-                                  studentId: studentId,
+                                  name: nameController.text,
+                                  password: passwordController.text,
+                                  gender: genderController.text,
+                                  dateOfBirth: dateOfBirthController.text,
+                                  faculty: facultyController.text,
+                                  studentId: studentIdController.text,
                                 ));
                           },
                           text: state is SignUpLoading
                               ? 'Đang tạo tài khoản...'
                               : state is SignUpFailure
                                   ? 'Lỗi! Thử lại.'
-                                  : 'Tạo tài khoản', // Hiển thị trạng thái khác nếu không phải loading hay failure
+                                  : 'Tạo tài khoản', 
                         ),
                       ],
                     );

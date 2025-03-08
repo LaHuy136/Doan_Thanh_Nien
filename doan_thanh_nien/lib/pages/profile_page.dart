@@ -19,17 +19,10 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProfileBloc()
-        ..add(LoadProfile(
-          name: "Nguyễn Văn A",
-          gender: "Nam",
-          dateOfBirth: "01/01/2000",
-          faculty: "CNTT",
-          studentId: "12345678",
-        )),
+      create: (context) => ProfileBloc()..add(LoadProfile()),
       child: Scaffold(
         appBar: MyAppbar(
-          onPressed: () => Navigator.push(
+          onPressed: () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => const HomePage(

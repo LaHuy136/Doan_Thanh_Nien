@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../models/volunteer_activities.dart';
+import '../../helpers/volunteer_activities.dart';
 
 class ActivityDetailState extends Equatable {
   final List<volunteerActivities> registeredEvents;

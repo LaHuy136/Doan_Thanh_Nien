@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../models/volunteer_activities.dart';
+import '../../helpers/volunteer_activities.dart';
 
 class ActivityDetailEvent extends Equatable {
   @override
@@ -12,18 +12,18 @@ class LoadActivityDetail extends ActivityDetailEvent {
   final String imagePath;
   final String day;
   final String location;
-  final int? registered;
+  final int? registeredNumber;
 
   LoadActivityDetail({
     required this.title,
     required this.imagePath,
     required this.day,
     required this.location,
-    this.registered,
+    this.registeredNumber,
   });
 
   @override
-  List<Object?> get props => [title, imagePath, day, location, registered];
+  List<Object?> get props => [title, imagePath, day, location, registeredNumber];
 }
 
 class RegisterActivity extends ActivityDetailEvent {

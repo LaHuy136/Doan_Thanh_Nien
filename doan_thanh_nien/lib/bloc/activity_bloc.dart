@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/volunteer_activities.dart';
+import '../helpers/volunteer_activities.dart';
 import 'event/activity_event.dart';
 import 'state/activity_state.dart';
 import 'dart:convert';
