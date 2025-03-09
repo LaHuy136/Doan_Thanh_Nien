@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/activity_bloc.dart';
 import '../bloc/drawer_bloc.dart';
+import '../bloc/event/activity_event.dart';
 import '../bloc/event/drawer_event.dart';
 import '../bloc/state/drawer_state.dart';
 import '../pages/home_page.dart';
@@ -123,14 +124,16 @@ class MyDrawer extends StatelessWidget {
                 MyDrawerTile(
                   onTap: () {
                     Navigator.pop(context);
+                    context.read<ActivityDetailBloc>().add(LoadActivityDetail(
+                        title: "default",
+                        imagePath: "default",
+                        day: "default",
+                        location: "default"));
 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BlocProvider.value(
-                          value: context.read<ActivityDetailBloc>(),
-                          child: RegisteredActivitiesPage(),
-                        ),
+                        builder: (context) => const RegisteredActivitiesPage(),
                       ),
                     );
                   },
@@ -140,10 +143,10 @@ class MyDrawer extends StatelessWidget {
 
                 const SizedBox(height: 15),
 
-                const MyDrawerTile(
-                  text: 'Tin tức / Sự kiện',
-                  icon: Icons.date_range_outlined,
-                ),
+                // const MyDrawerTile(
+                //   text: 'Tin tức / Sự kiện',
+                //   icon: Icons.date_range_outlined,
+                // ),
 
                 const Spacer(),
 

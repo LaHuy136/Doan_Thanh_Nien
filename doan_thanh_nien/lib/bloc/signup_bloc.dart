@@ -7,7 +7,6 @@ import '../helpers/save_user_profile.dart';
 import 'event/signup_event.dart';
 import 'state/signup_state.dart';
 
-
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   String name = '';
   String password = '';
@@ -37,9 +36,30 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     });
 
     on<SignUpSubmitted>((event, emit) async {
+      if (event.name.isEmpty ||
+          event.password.isEmpty ||
+          event.gender.isEmpty ||
+          event.dateOfBirth.isEmpty ||
+          event.faculty.isEmpty ||
+          event.studentId.isEmpty) {
+        emit(SignUpFailure());
+        emit(SignUpInitial());
+        return;
+      }
+      if (event.password.length < 6) {
+        emit(SignUpFailure());
+        emit(SignUpInitial());
+
+        return;
+      }
+      if (!RegExp(r'^10221\d{4}$').hasMatch(event.studentId)) {
+        emit(SignUpFailure());
+        emit(SignUpInitial());
+        return;
+      }
+
       emit(SignUpLoading());
       try {
-        // Thực hiện lưu thông tin người dùng
         await saveUserProfile(
           name: event.name,
           password: event.password,
@@ -50,10 +70,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         );
 
         emit(SignUpSuccess());
-
-        Navigator.of(context).pop();
       } catch (_) {
         emit(SignUpFailure());
+        emit(SignUpInitial());
       }
     });
   }

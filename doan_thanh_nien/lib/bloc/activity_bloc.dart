@@ -8,6 +8,8 @@ import 'dart:convert';
 class ActivityDetailBloc
     extends Bloc<ActivityDetailEvent, ActivityDetailState> {
   ActivityDetailBloc() : super(ActivityDetailInitial()) {
+
+
     on<LoadActivityDetail>((event, emit) async {
       final prefs = await SharedPreferences.getInstance();
       final registeredEventsJson = prefs.getString('registeredEvents');
@@ -24,13 +26,16 @@ class ActivityDetailBloc
       }
 
       emit(ActivityDetailLoaded(
-          title: event.title,
-          imagePath: event.imagePath,
-          day: event.day,
-          location: event.location,
-          numberRegistered: numberRegistered,
-          registeredEvents: registeredEvents,
-          message: ''));
+        title: event.title,
+        imagePath: event.imagePath,
+        day: event.day,
+        location: event.location,
+        numberRegistered: numberRegistered,
+        registeredEvents: registeredEvents,
+        message: registeredEvents.isEmpty
+            ? 'Chưa có sự kiện nào được đăng ký.'
+            : '', 
+      ));
     });
 
     on<RegisterActivity>((event, emit) async {
@@ -58,12 +63,15 @@ class ActivityDetailBloc
           prefs.setString('registeredEvents',
               json.encode(updatedEvents.map((e) => e.toJson()).toList()));
 
+          final newNumberRegistered = updatedEvents
+              .length; 
+
           emit(ActivityDetailLoaded(
             title: state.title,
             imagePath: state.imagePath,
             day: state.day,
             location: state.location,
-            numberRegistered: state.numberRegistered + 1,
+            numberRegistered: newNumberRegistered,
             registeredEvents: updatedEvents,
             message: 'Đăng ký thành công!',
           ));

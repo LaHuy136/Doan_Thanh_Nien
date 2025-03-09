@@ -1,9 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:doan_thanh_nien/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/event/update_event.dart';
 import '../bloc/state/update_state.dart';
 import '../bloc/update_bloc.dart';
+import '../components/custom_snack_bar.dart';
+import '../components/date_picker.dart';
 import '../components/my_button.dart';
 import '../components/my_heading.dart';
 import '../components/my_sub_textfield.dart';
@@ -11,28 +15,29 @@ import '../components/my_textfield.dart';
 import '../themes/colors.dart';
 
 class UpdatePage extends StatelessWidget {
-  final String name;
-  final String gender;
-  final String dateOfBirth;
-  final String faculty;
-  final String studentId;
+  final String? name;
+  final String? gender;
+  final String? dateOfBirth;
+  final String? faculty;
+  final String? studentId;
 
   const UpdatePage({
     super.key,
-    required this.name,
-    required this.gender,
-    required this.dateOfBirth,
-    required this.faculty,
-    required this.studentId,
+    this.name,
+    this.gender,
+    this.dateOfBirth,
+    this.faculty,
+    this.studentId,
   });
 
   @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController(text: name);
-    final genderController = TextEditingController(text: gender);
-    final dateOfBirthController = TextEditingController(text: dateOfBirth);
-    final facultyController = TextEditingController(text: faculty);
-    final studentIDController = TextEditingController(text: studentId);
+    final nameController = TextEditingController(text: name ?? '');
+    final genderController = TextEditingController(text: gender ?? '');
+    final dateOfBirthController =
+        TextEditingController(text: dateOfBirth ?? '');
+    final facultyController = TextEditingController(text: faculty ?? '');
+    final studentIDController = TextEditingController(text: studentId ?? '');
 
     return Scaffold(
       body: Padding(
@@ -51,6 +56,13 @@ class UpdatePage extends StatelessWidget {
                           color: AppColor.textSnackBarColor,
                         ),
                       )),
+                );
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const HomePage(selectedCategory: 'All'),
+                  ),
                 );
               }
             },
@@ -88,11 +100,7 @@ class UpdatePage extends StatelessWidget {
                   const SizedBox(height: 20),
                   const MySubTextfield(text: 'Ngày sinh'),
                   const SizedBox(height: 20),
-                  MyTextfield(
-                    controller: dateOfBirthController,
-                    hintText: 'Ngày / Tháng / Năm',
-                    obsecureText: false,
-                  ),
+                  DatePicker(dateOfBirthController: dateOfBirthController),
                   const SizedBox(height: 20),
                   const MySubTextfield(text: 'Khoa - Lớp'),
                   const SizedBox(height: 20),
@@ -112,6 +120,49 @@ class UpdatePage extends StatelessWidget {
                   const SizedBox(height: 20),
                   MyButton(
                     onTap: () {
+                      if (state is UpdateFailure) {
+                        if (nameController.text.isEmpty) {
+                          CustomSnackBar.showSnackBar(
+                            context,
+                            state.nameError ?? "",
+                            AppColor.bgsnackBarColorFailure,
+                            AppColor.textSnackBarColor,
+                          );
+                          return;
+                        }
+
+                        if (genderController.text.isEmpty) {
+                          CustomSnackBar.showSnackBar(
+                            context,
+                            state.genderError ??
+                                "",
+                            AppColor.bgsnackBarColorFailure,
+                            AppColor.textSnackBarColor,
+                          );
+                          return;
+                        }
+
+                        if (facultyController.text.isEmpty) {
+                          CustomSnackBar.showSnackBar(
+                            context,
+                            state.facultyError ?? "",
+                            AppColor.bgsnackBarColorFailure,
+                            AppColor.textSnackBarColor,
+                          );
+                          return;
+                        }
+
+                        if (studentIDController.text.isEmpty) {
+                          CustomSnackBar.showSnackBar(
+                            context,
+                            state.studentIdError ?? "",
+                            AppColor.bgsnackBarColorFailure,
+                            AppColor.textSnackBarColor,
+                          );
+                          return;
+                        }
+                      }
+
                       context.read<UpdateBloc>().add(UpdateUserDataEvent(
                             name: nameController.text,
                             gender: genderController.text,
@@ -119,16 +170,9 @@ class UpdatePage extends StatelessWidget {
                             faculty: facultyController.text,
                             studentId: studentIDController.text,
                           ));
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const HomePage(selectedCategory: 'All'),
-                        ),
-                      );
                     },
                     text: 'Xác nhận',
-                  ),
+                  )
                 ],
               );
             },

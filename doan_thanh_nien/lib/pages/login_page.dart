@@ -21,7 +21,6 @@ class LoginPage extends StatelessWidget {
       create: (context) => LoginBloc(context),
       child: Scaffold(
         backgroundColor: AppColor.bgColor,
-        appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Center(
