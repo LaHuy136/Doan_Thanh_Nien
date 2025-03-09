@@ -15,27 +15,30 @@ class RegisteredActivitiesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(
-        onPressed: () {},
-        icon: Icons.search_outlined,
-      ),
+      // appBar: MyAppbar(
+      //   onPressed: () {},
+      //   icon: Icons.search_outlined,
+      // ),
       body: BlocBuilder<ActivityDetailBloc, ActivityDetailState>(
         builder: (context, state) {
-          if (state is ActivityDetailLoaded) {
-            final registeredEvents = state.registeredEvents;
-
-            if (registeredEvents.isEmpty) {
-              return Center(
+          if (state.registeredEvents.isEmpty) {
+            return Scaffold(
+              appBar: MyAppbar(
+                onPressed: () {},
+                icon: Icons.search_outlined,
+              ),
+              body: Center(
                 child: Text(
-                  'Chưa có sự kiện nào được đăng ký.',
+                  'Bạn chưa đăng ký hoạt động nào!',
                   style: TextStyle(
                     fontSize: 18,
                     color: AppColor.textColor,
                   ),
                 ),
-              );
-            }
-
+              ),
+            );
+          } if (state is ActivityDetailLoaded) {
+            final registeredEvents = state.registeredEvents;
             return Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
@@ -48,6 +51,7 @@ class RegisteredActivitiesPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final event = registeredEvents[index];
                         return MyActivityTile(
+                          icon: const Icon(Icons.read_more_outlined),
                           activity: event,
                           onTap: () => Navigator.pushReplacement(
                             context,

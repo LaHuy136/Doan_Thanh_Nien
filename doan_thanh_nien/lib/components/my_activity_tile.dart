@@ -5,12 +5,13 @@ import '../themes/colors.dart';
 
 class MyActivityTile extends StatelessWidget {
   final volunteerActivities activity;
-  // final IconData icon;
+  final Icon? icon;
   final VoidCallback onTap;
   const MyActivityTile({
     super.key,
-    required this.onTap,
     required this.activity,
+    this.icon,
+    required this.onTap,
     // required this.icon,
   });
 
@@ -91,7 +92,7 @@ class MyActivityTile extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: onTap,
-                      icon: const Icon(Icons.add_rounded),
+                      icon: icon ?? const Icon(Icons.add_rounded),
                       color: AppColor.bgColor,
                     ),
                   ),

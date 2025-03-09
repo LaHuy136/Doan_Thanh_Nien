@@ -1,13 +1,11 @@
-import 'package:equatable/equatable.dart';
-
-class ProfileState extends Equatable {
+class ProfileState {
   final String name;
   final String gender;
   final String dateOfBirth;
   final String faculty;
   final String studentId;
 
-  const ProfileState({
+  ProfileState({
     required this.name,
     required this.gender,
     required this.dateOfBirth,
@@ -16,7 +14,7 @@ class ProfileState extends Equatable {
   });
 
   factory ProfileState.initial() {
-    return const ProfileState(
+    return ProfileState(
       name: '',
       gender: '',
       dateOfBirth: '',
@@ -40,7 +38,4 @@ class ProfileState extends Equatable {
       studentId: studentId ?? this.studentId,
     );
   }
-
-  @override
-  List<Object> get props => [name, gender, dateOfBirth, faculty, studentId];
 }

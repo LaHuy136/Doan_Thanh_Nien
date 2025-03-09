@@ -9,13 +9,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/activity_bloc.dart';
 import '../bloc/event/activity_event.dart';
+import '../bloc/event/home_event.dart';
+import '../bloc/home_bloc.dart';
 import '../bloc/state/activity_state.dart';
 import '../components/my_drawer.dart';
 import '../helpers/volunteer_activities.dart';
 import '../themes/colors.dart';
 import 'activity_registered_page.dart';
 
-class ActivityDetailPage extends StatelessWidget {
+class ActivityDetailPage extends StatefulWidget {
   final volunteerActivitiesCategory? category;
   final volunteerActivities activity;
 
@@ -26,13 +28,19 @@ class ActivityDetailPage extends StatelessWidget {
   });
 
   @override
+  State<ActivityDetailPage> createState() => _ActivityDetailPageState();
+}
+
+class _ActivityDetailPageState extends State<ActivityDetailPage> {
+  String selectedCategory = 'All';
+  @override
   Widget build(BuildContext context) {
     context.read<ActivityDetailBloc>().add(LoadActivityDetail(
-          title: activity.title,
-          imagePath: activity.imagePath,
-          day: activity.day,
-          location: activity.location,
-          registeredNumber: activity.registeredNumber,
+          title: widget.activity.title,
+          imagePath: widget.activity.imagePath,
+          day: widget.activity.day,
+          location: widget.activity.location,
+          registeredNumber: widget.activity.registeredNumber,
         ));
 
     return Scaffold(
@@ -48,7 +56,14 @@ class ActivityDetailPage extends StatelessWidget {
         icon: Icons.arrow_back_ios_new,
       ),
       drawer: MyDrawer(
-        onSelectCategory: (category) {},
+        onSelectCategory: (category) {
+          setState(() {
+            selectedCategory = category;
+          });
+          context
+              .read<HomeBloc>()
+              .add(FetchActivitiesEvent(category: category));
+        },
       ),
       body: BlocBuilder<ActivityDetailBloc, ActivityDetailState>(
         builder: (context, state) {
@@ -171,8 +186,8 @@ class ActivityDetailPage extends StatelessWidget {
                           location: state.location,
                           registeredNumber: state.numberRegistered,
                           isRegistered: true,
-                          category:
-                              category ?? volunteerActivitiesCategory.another,
+                          category: widget.category ??
+                              volunteerActivitiesCategory.another,
                         );
 
                         if (activity.isExpired()) {
