@@ -59,6 +59,13 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
         await prefs.setString('studentId', event.studentId!);
 
         emit(UpdateSuccess());
+        emit(UpdateLoaded(
+          name: event.name!,
+          gender: event.gender!,
+          dateOfBirth: event.dateOfBirth!,
+          faculty: event.faculty!,
+          studentId: event.studentId!,
+        ));
       } catch (e) {
         emit(const UpdateFailure(errorMessage: "Lỗi khi cập nhật dữ liệu"));
       }

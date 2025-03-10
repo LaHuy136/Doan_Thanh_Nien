@@ -1,4 +1,5 @@
 // ignore_for_file: library_private_types_in_public_api
+import 'package:doan_thanh_nien/components/gender_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:doan_thanh_nien/components/my_button.dart';
@@ -30,7 +31,7 @@ class _SignUpState extends State<SignUp> {
     final studentIdController = TextEditingController();
 
     return BlocProvider(
-      create: (context) => SignUpBloc(context),
+      create: (context) => SignUpBloc(),
       child: Scaffold(
         body: BlocListener<SignUpBloc, SignUpState>(
             listener: (context, state) {
@@ -93,16 +94,7 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(height: 20),
                             const MySubTextfield(text: 'Giới tính'),
                             const SizedBox(height: 15),
-                            MyTextfield(
-                              controller: genderController,
-                              onChanged: (value) {
-                                context
-                                    .read<SignUpBloc>()
-                                    .add(GenderChanged(value));
-                              },
-                              hintText: 'Nam / Nữ',
-                              obsecureText: false,
-                            ),
+                            GenderPicker(genderController: genderController),
                             const SizedBox(height: 20),
                             const MySubTextfield(text: 'Ngày sinh'),
                             const SizedBox(height: 15),
@@ -134,7 +126,7 @@ class _SignUpState extends State<SignUp> {
                               hintText: '10221xxxx',
                               obsecureText: false,
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 25),
                             MyButton(
                               onTap: () {
                                 if (state is! SignUpLoading) {

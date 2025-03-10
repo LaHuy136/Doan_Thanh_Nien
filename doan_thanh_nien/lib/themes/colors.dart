@@ -21,6 +21,10 @@ class AppColor {
 
   // AppBar
   static Color appBarColor = const Color.fromARGB(255, 21, 61, 133);
+  static Color iconAppBarColor = const Color.fromARGB(255, 255, 255, 255);
+
+  // Picker
+  static Color textPickerColor = const Color.fromARGB(197, 156, 168, 211);
 
   // Drawer
   static Color drawerTileColor = const Color.fromARGB(255, 40, 117, 187);

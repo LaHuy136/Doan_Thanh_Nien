@@ -27,7 +27,7 @@ class LoadActivityDetail extends ActivityDetailEvent {
 }
 
 class RegisterActivity extends ActivityDetailEvent {
-  final volunteerActivities event;
+  final volunteerActivities activity;
 
-  RegisterActivity({required this.event});
+  RegisterActivity({required this.activity});
 }

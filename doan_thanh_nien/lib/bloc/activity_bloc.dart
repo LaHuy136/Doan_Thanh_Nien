@@ -42,7 +42,7 @@ class ActivityDetailBloc
       final state = this.state;
       if (state is ActivityDetailLoaded) {
         final isAlreadyRegistered =
-            state.registeredEvents.any((e) => e.title == event.event.title);
+            state.registeredEvents.any((e) => e.title == event.activity.title);
 
         if (isAlreadyRegistered) {
           emit(ActivityDetailLoaded(
@@ -57,7 +57,7 @@ class ActivityDetailBloc
         } else {
           final updatedEvents =
               List<volunteerActivities>.from(state.registeredEvents)
-                ..add(event.event.copyWith(isRegistered: true));
+                ..add(event.activity.copyWith(isRegistered: true));
 
           final prefs = await SharedPreferences.getInstance();
           prefs.setString('registeredEvents',
