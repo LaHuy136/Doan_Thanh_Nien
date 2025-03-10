@@ -38,10 +38,10 @@ class News extends ChangeNotifier {
 
     // another
     volunteerActivities(
-      imagePath: 'assets/images/trong_cay.jpg',
-      title: 'Trồng cây xanh 2024',
+      imagePath: 'assets/images/hien_mau.jpg',
+      title: 'Hiến máu nhân đạo',
       day: '18/09/2024 - 20/09/2024',
-      location: 'Công viên Thống Nhất, Hà Nội',
+      location: 'Trường THPT Kim Đồng, Hà Nội',
       registeredNumber: 0,
       category: volunteerActivitiesCategory.another,
     ),

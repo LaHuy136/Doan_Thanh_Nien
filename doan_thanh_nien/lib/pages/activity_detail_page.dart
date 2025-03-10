@@ -204,7 +204,7 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                             duration: const Duration(seconds: 1),
                           ));
                           context.read<ActivityDetailBloc>().add(
-                                RegisterActivity(event: activity),
+                                RegisterActivity(activity: activity),
                               );
                           Navigator.push(
                             context,

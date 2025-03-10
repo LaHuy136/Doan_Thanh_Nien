@@ -4,14 +4,15 @@ import 'event/profile_event.dart';
 import 'state/profle_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  ProfileBloc() : super(ProfileState.initial()) {
+  final SharedPreferences prefs;
+
+  ProfileBloc({required this.prefs}) : super(ProfileState.initial()) {
     on<LoadProfile>(_onLoadProfile);
     on<UpdateProfile>(_onUpdateProfile);
   }
 
   Future<void> _onLoadProfile(
       LoadProfile event, Emitter<ProfileState> emit) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     String name = prefs.getString('name') ?? '';
     String gender = prefs.getString('gender') ?? '';
     String dateOfBirth = prefs.getString('dateOfBirth') ?? '';
@@ -29,7 +30,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Future<void> _onUpdateProfile(
       UpdateProfile event, Emitter<ProfileState> emit) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (event.dateOfBirth != null) {
       await prefs.setString('dateOfBirth', event.dateOfBirth!);
     }

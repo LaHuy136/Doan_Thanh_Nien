@@ -15,18 +15,14 @@ class RegisteredActivitiesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: MyAppbar(
-      //   onPressed: () {},
-      //   icon: Icons.search_outlined,
-      // ),
+      appBar: MyAppbar(
+        onPressed: () {},
+        icon: Icons.arrow_back_ios_new,
+      ),
       body: BlocBuilder<ActivityDetailBloc, ActivityDetailState>(
         builder: (context, state) {
           if (state.registeredEvents.isEmpty) {
             return Scaffold(
-              appBar: MyAppbar(
-                onPressed: () {},
-                icon: Icons.search_outlined,
-              ),
               body: Center(
                 child: Text(
                   'Bạn chưa đăng ký hoạt động nào!',

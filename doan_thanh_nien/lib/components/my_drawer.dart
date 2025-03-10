@@ -124,11 +124,20 @@ class MyDrawer extends StatelessWidget {
                 MyDrawerTile(
                   onTap: () {
                     Navigator.pop(context);
-                    context.read<ActivityDetailBloc>().add(LoadActivityDetail(
-                        title: "default",
-                        imagePath: "default",
-                        day: "default",
-                        location: "default"));
+                    // Kiểm tra Bloc trước khi truy cập
+                    final activityBloc = context.read<ActivityDetailBloc>();
+                    if (activityBloc.state is LoadActivityDetail) {
+                      final activity =
+                          (activityBloc.state as LoadActivityDetail);
+                      activityBloc.add(
+                        LoadActivityDetail(
+                          title: activity.title,
+                          imagePath: activity.imagePath,
+                          day: activity.day,
+                          location: activity.location,
+                        ),
+                      );
+                    }
 
                     Navigator.push(
                       context,

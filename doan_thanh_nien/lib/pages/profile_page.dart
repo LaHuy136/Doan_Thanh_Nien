@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../bloc/event/profile_event.dart';
 import '../bloc/profile_bloc.dart';
 import '../bloc/state/profle_state.dart';
@@ -13,66 +16,83 @@ import '../themes/colors.dart';
 import 'home_page.dart';
 import 'update_page.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeSharedPreferences();
+  }
+
+  Future<void> _initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    context
+        .read<ProfileBloc>()
+        .add(LoadProfile()); 
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProfileBloc()..add(LoadProfile()),
-      child: Scaffold(
-        appBar: MyAppbar(
-          onPressed: () => Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const HomePage(
-                selectedCategory: 'All',
-              ),
+    return Scaffold(
+      appBar: MyAppbar(
+        onPressed: () => Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(
+              selectedCategory: 'All',
             ),
           ),
-          icon: Icons.arrow_back_ios_new,
         ),
-        drawer: MyDrawer(onSelectCategory: (category) {}),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Center(
-            child: BlocBuilder<ProfileBloc, ProfileState>(
-              builder: (context, state) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const MyHeading(text: 'Thông tin cá nhân'),
-                    const SizedBox(height: 20),
-                    const MyAvatar(),
-                    const MyDivider(),
-                    Row(
-                      children: [
-                        _buildLabelColumn(),
-                        _buildValueColumn(context, state),
-                      ],
-                    ),
-                    const SizedBox(height: 25),
-                    MyButton(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UpdatePage(
-                              name: state.name,
-                              gender: state.gender,
-                              dateOfBirth: state.dateOfBirth,
-                              faculty: state.faculty,
-                              studentId: state.studentId,
-                            ),
+        icon: Icons.arrow_back_ios_new,
+      ),
+      drawer: MyDrawer(onSelectCategory: (category) {}),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const MyHeading(text: 'Thông tin cá nhân'),
+                  const SizedBox(height: 20),
+                  const MyAvatar(),
+                  const MyDivider(),
+                  Row(
+                    children: [
+                      _buildLabelColumn(),
+                      _buildValueColumn(context, state),
+                    ],
+                  ),
+                  const SizedBox(height: 35),
+                  MyButton(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UpdatePage(
+                            name: state.name,
+                            gender: state.gender,
+                            dateOfBirth: state.dateOfBirth,
+                            faculty: state.faculty,
+                            studentId: state.studentId,
                           ),
-                        );
-                      },
-                      text: 'Cập nhật',
-                    ),
-                  ],
-                );
-              },
-            ),
+                        ),
+                      );
+                    },
+                    text: 'Cập nhật',
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -123,11 +143,11 @@ class ProfilePage extends StatelessWidget {
             color: AppColor.textColor,
             fontFamily: 'Poppins-Regular',
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 18,
           ),
         ),
         const MyDivider(),
-        const SizedBox(height: 8),
+        const SizedBox(height: 12),
       ],
     );
   }
@@ -141,11 +161,11 @@ class ProfilePage extends StatelessWidget {
           style: TextStyle(
             color: AppColor.textColor,
             fontFamily: 'Poppins-Medium',
-            fontSize: 16,
+            fontSize: 18,
           ),
         ),
         const MyDivider(),
-        const SizedBox(height: 8),
+        const SizedBox(height: 12),
       ],
     );
   }

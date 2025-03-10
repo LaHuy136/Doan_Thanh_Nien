@@ -37,13 +37,13 @@ class _MyAvatarState extends State<MyAvatar> {
           CircleAvatar(
             radius: 60,
             backgroundImage: _image != null ? FileImage(_image!) : null,
-            child: _image == null ? const Icon(Icons.person, size: 60) : null,
+            child: _image == null ? const Icon(Icons.person, size: 80) : null,
           ),
           const SizedBox(height: 10),
           IconButton(
             onPressed: _pickImage,
             icon: Container(
-              width: 120,
+              width: 160,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -7,11 +7,13 @@ import 'package:doan_thanh_nien/bloc/update_bloc.dart';
 import 'package:doan_thanh_nien/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'bloc/drawer_bloc.dart';
 import 'bloc/event/drawer_event.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
 
   runApp(
     MultiBlocProvider(
@@ -21,9 +23,9 @@ void main() async {
         BlocProvider(
             create: (context) => DrawerBloc()..add(LoadUserDataEvent())),
         BlocProvider(create: (context) => LoginBloc(context)),
-        BlocProvider(create: (context) => SignUpBloc(context)),
+        BlocProvider(create: (context) => SignUpBloc()),
         BlocProvider(create: (context) => UpdateBloc()),
-        BlocProvider(create: (context) => ProfileBloc()),
+        BlocProvider(create: (context) => ProfileBloc(prefs: prefs)),
       ],
       child: const MyApp(),
     ),
